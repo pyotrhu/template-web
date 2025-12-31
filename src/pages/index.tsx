@@ -1,6 +1,3 @@
-// 文件位置: src/pages/index.tsx
-// (请替换整个文件内容，注意保留头部的 import)
-
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -62,8 +59,7 @@ export default function Home() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // *** 修改点 1: 名字改成你的 ***
-  const fullText = "Hello, I'm Zitong Hu"; 
+  const fullText = "Hello, I'm Zitong Hu";
 
   // Typewriter effect logic
   useEffect(() => {
@@ -124,13 +120,13 @@ export default function Home() {
   };
 
   const handleGithubClick = () => {
-    window.open("https://github.com/pyotrhu", "_blank"); // 记得换成你的 GitHub
+    window.open("https://github.com/pyotrhu", "_blank");
   };
 
   const handleQQClick = () => {
     setImageModal({
       isOpen: true,
-      title: "Contact", // 英文标题
+      title: "Contact",
       images: ["/images/qq.jpg"],
       danmakuText: "Contact",
       enableDanmaku: true,
@@ -139,7 +135,7 @@ export default function Home() {
     });
   };
 
-  // Tags (ensure these are what you want)
+  // Tags
   const tags = [
     { name: "Game Design" },
     { name: "Video Production" },
@@ -163,8 +159,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Home - Zixiang Zhou&apos;s Web</title>
-        <meta name="description" content="Zixiang Zhou's homepage" />
+        <title>Home - Zitong Hu&apos;s Web</title>
+        <meta name="description" content="Zitong Hu's homepage" />
       </Head>
       <div className="relative">
         <ImageModal
@@ -197,10 +193,12 @@ export default function Home() {
           enableDanmaku={videoModal.enableDanmaku}
         />
 
-        <div className={`${geistSans.className} ${geistMono.className} items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)] flex justify-center px-4 md:px-0 `}>
-          <div className="flex flex-col w-full max-w-3xl h-[100vh] md:h-auto overflow-y-auto md:overflow-y-visible custom-scrollbar pb-20 md:pb-0 hide-scrollbar">
-            <div className="flex gap-[10px] flex-col md:flex-row pt-[100px] md:pt-0">
-              <div className="relative w-full md:w-[250px] flex justify-center items-center mx-auto md:mx-0">
+        <div className={`${geistSans.className} ${geistMono.className} justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)] flex justify-center px-4 md:px-0 py-10 md:py-20`}>
+          <div className="flex flex-col w-full max-w-3xl h-auto md:h-auto overflow-y-visible custom-scrollbar hide-scrollbar">
+            
+            {/* Header Section */}
+            <div className="flex gap-[10px] flex-col md:flex-row pt-[50px] md:pt-0">
+              <div className="relative w-full md:w-[340px] flex justify-center items-center mx-auto md:mx-0">
                 <Image
                   src="/images/avatar.jpg"
                   alt="Avatar"
@@ -218,34 +216,35 @@ export default function Home() {
                   />
                 )}
               </div>
-              <div className="flex flex-col gap-[10px] text-center md:text-left px-4 md:px-0">
-                <div className="text-[28px] md:text-[40px] font-bold text-[#fff] text-shadow-sm">
+              <div className="flex flex-col gap-[10px] text-center md:text-left px-4 md:px-0 w-full">
+                <div className="text-[28px] md:text-[40px] font-bold text-[#fff] text-shadow-sm whitespace-nowrap min-h-[42px] md:min-h-[60px] flex items-center w-full overflow-visible justify-center md:justify-start">
                   <span className="inline-block">
                     {displayText}
                     <span className="animate-pulse text-[#3d85a9]">|</span>
                   </span>
                 </div>
-                {/* *** 修改点 2: 英文职业 *** */}
+                
                 <div className="text-shadow-sm text-[#fff] text-[14px] md:text-[16px]">
                   <span className="bg-gradient-to-br from-[#1b2c55] to-[#3d85a9] bg-clip-text text-transparent text-[16px] md:text-[18px]">
                     Student
                   </span>{" "}
-                   (Computer Science & Mathematics)
+                   (Computer Science & Technology)
                 </div>
-                {/* *** 修改点 3: 英文年龄 *** */}
+                
                 <div className="text-shadow-sm text-[#fff] text-[14px] md:text-[16px]">
                   <span className="bg-gradient-to-br from-[#1b2c55] to-[#3d85a9] bg-clip-text text-transparent text-[16px] md:text-[18px]">
-                    20
+                    21
                   </span>{" "}
                   years old
                 </div>
-                {/* *** 修改点 4: 英文经验 *** */}
+                
                 <div className="text-shadow-sm text-[#fff] text-[14px] md:text-[16px]">
                   <span className="bg-gradient-to-br from-[#1b2c55] to-[#3d85a9] bg-clip-text text-transparent text-[16px] md:text-[18px]">
-                    1
+                   Game
                   </span>{" "}
-                  year research experience
+                  Designer
                 </div>
+                
                 <div className="flex mt-[10px] gap-[10px] justify-center md:justify-start">
                   <div className="bg-[rgba(0,0,0,.5)] rounded-[5px] p-[8px] cursor-pointer" onClick={handleGithubClick}>
                     <SvgIcon name="github" width={20} height={20} color="#fff" />
@@ -257,21 +256,24 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Main Content Layout */}
             <div className="flex gap-[10px] mt-[20px] flex-col md:flex-row px-4 md:px-0">
-              <div className="flex order-2 md:order-1 w-full md:w-auto">
-                <div className="flex flex-col gap-[10px] w-full md:w-[250px]">
-                  <div className="flex gap-[10px] flex-col flex-row">
-                    <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col flex-1">
+              
+              <div className="flex order-2 md:order-1 w-full md:w-[340px] md:shrink-0">
+                <div className="flex flex-col gap-[10px] w-full">
+                  
+                  <div className="grid grid-cols-2 gap-[10px]">
+                    <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col">
                       <div className="flex items-center gap-[5px]">
                         <SvgIcon name="address" width={20} height={20} color="#fff" />
                         Shanghai
                       </div>
-                      <div className="flex items-center gap-[5px]">
+                      <div className="flex items-center gap-[5px] break-words">
                         <SvgIcon name="work" width={20} height={20} color="#fff" />
-                        SJTU
+                        ShanghaiTech University
                       </div>
                     </div>
-                    <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col flex-1">
+                    <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col">
                       <div className="flex items-center gap-[5px]">
                         <SvgIcon name="address" width={20} height={20} color="#fff" />
                         Shanghai
@@ -282,6 +284,8 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
+
+                  {/* Tags */}
                   <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] gap-[10px] flex flex-wrap text-[12px]">
                     {tags.map((tag) => (
                       <div className="bg-[rgba(255,255,255,.1)] rounded-[5px] p-[5px] w-fit cursor-pointer hover:bg-[rgba(255,255,255,.2)] transition-all duration-200 transform hover:scale-105" key={tag.name} onClick={() => handleTagClick(tag.name)}>
@@ -289,6 +293,8 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
+
+                  {/* Experience Timeline */}
                   <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col">
                     <div className="relative">
                       {express.map((item, index) => (
@@ -310,7 +316,8 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="flex flex-col gap-[10px] order-1 md:order-2 w-full md:w-auto">
+              {/* Right Column */}
+              <div className="flex flex-col gap-[10px] order-1 md:order-2 w-full flex-1 min-w-0">
                 <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col">
                   <div className="font-bold text-[16px] flex items-center gap-[5px]">
                     <SvgIcon name="site" width={20} height={20} color="#fff" />
@@ -319,20 +326,14 @@ export default function Home() {
                       <span className="text-[11px] font-[400]">Links</span>
                     </div>
                   </div>
+                  {/* *** 修改点：移除了 Blog 链接，只保留 Portfolio *** */}
                   <div className="flex gap-[10px] flex-col sm:flex-row">
-                    <Link href="/works" className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col cursor-pointer flex-1">
+                    <Link href="/works" className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col cursor-pointer flex-1 hover:bg-[rgba(0,0,0,.5)] transition-colors">
                       <div className="flex justify-between items-center">
                         Portfolio
                         <SvgIcon name="zuopin" width={25} height={25} color="#fff" />
                       </div>
                       <span className="text-[12px]">My Projects</span>
-                    </Link>
-                    <Link href="/blog" className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col cursor-pointer flex-1">
-                      <div className="flex justify-between items-center">
-                        Blog
-                        <SvgIcon name="docs" width={25} height={25} color="#fff" />
-                      </div>
-                      <span className="text-[12px]">My Thoughts</span>
                     </Link>
                   </div>
                   <div className="text-[12px] md:text-[14px]">

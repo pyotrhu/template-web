@@ -28,9 +28,10 @@
     "generate": "npx prisma generate",
     "build": "prisma generate && next build",
     "postinstall": "prisma generate",
-    "start": "next start",
+    "start": "next start",  
     "lint": "next lint"
   },
+  
   "dependencies": {
     "@prisma/client": "^6.13.0",
     "@types/pg": "^8.15.5",

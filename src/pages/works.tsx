@@ -1,6 +1,3 @@
-// 文件位置: src/pages/works.tsx
-// (请替换整个文件内容)
-
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import SvgIcon from "@/components/SvgIcon";
@@ -37,7 +34,7 @@ interface Work {
   download_url?: string;
   function?: WorkFunction[];
   desc?: string;
-  pdf?: string; // <--- 确保类型定义包含 pdf
+  pdf?: string;
 }
 
 export default function Works() {
@@ -154,7 +151,6 @@ export default function Works() {
             <div className="p-4 md:p-6 h-full overflow-y-auto custom-scrollbar">
               {selectedWork && (
                 <div className="space-y-6">
-                  {/* *** 修改核心：支持 PDF 展示 *** */}
                   <div className="relative rounded-xl overflow-hidden flex justify-center">
                     {selectedWork.pdf ? (
                       <div className="w-full h-[60vh] md:h-[80vh]">
@@ -349,7 +345,6 @@ export default function Works() {
                       </button>
                     )}
                     
-                     {/* *** 如果配置了 PDF，也给一个直接打开的入口 *** */}
                     {work.pdf && (
                        <button onClick={() => window.open(work.pdf, "_blank")} className="bg-[rgba(0,0,0,.5)] hover:bg-[rgba(0,0,0,.7)] text-white py-2.5 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 border border-[rgba(255,255,255,0.2)] backdrop-blur-sm flex items-center justify-center gap-2 cursor-pointer text-sm md:text-base">
                         <SvgIcon name="docs" width={16} height={16} color="#fff" className="md:w-[18px] md:h-[18px]" />
@@ -395,12 +390,7 @@ export default function Works() {
           </section>
         </div>
 
-        <Link href="/blog" className="fixed bottom-4 md:bottom-8 right-4 md:right-8 z-10">
-          <button className="bg-[rgba(0,0,0,.5)] hover:bg-[rgba(0,0,0,.7)] rounded-[5px] p-[6px] md:p-[8px] cursor-pointer transition-all duration-200 flex items-center gap-1 md:gap-2 text-white backdrop-blur-sm">
-            <span className="text-xs md:text-sm">Blog</span>
-            <SvgIcon name="right" width={16} height={16} color="#fff" className="md:w-5 md:h-5" />
-          </button>
-        </Link>
+        {/* *** 修改点：移除了这里的 <Link href="/blog"> 悬浮按钮 *** */}
       </div>
     </>
   );
