@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import { useTheme } from "@/contexts/ThemeContext";
 import SvgIcon from "@/components/SvgIcon";
-import GitHubHeatmap from "@/components/GitHubHeatmap";
 import ImageModal from "@/components/ImageModal";
 import MusicModal from "@/components/MusicModal";
 import VideoModal from "@/components/VideoModal";
@@ -59,7 +58,7 @@ export default function Home() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const fullText = "Hello, I'm wuxian";
+  const fullText = "Hello, I'm zitong hu";
 
   // 打字机动画效果
   useEffect(() => {
@@ -129,7 +128,7 @@ export default function Home() {
 
   // 添加GitHub和QQ点击处理函数
   const handleGithubClick = () => {
-    window.open("https://github.com/996wuxian", "_blank");
+    window.open("https://github.com/pyotrhu", "_blank");
   };
 
   const handleQQClick = () => {
@@ -137,7 +136,7 @@ export default function Home() {
       isOpen: true,
       title: "QQ",
       images: ["/images/qq.jpg"],
-      danmakuText: "联系我",
+      danmakuText: "Contact",
       enableDanmaku: true,
       imageWidth: 500,
       imageHeight: 500,
@@ -146,49 +145,49 @@ export default function Home() {
 
   const tags = [
     {
-      name: "做饭",
+      name: "Game Design",
     },
     {
-      name: "摄影",
+      name: "Video produce",
     },
     {
-      name: "五哈",
+      name: "Anime",
     },
     {
-      name: "美食",
+      name: "PostModern",
     },
     {
-      name: "沧元图",
+      name: "Write",
     },
     {
-      name: "音乐",
+      name: "Steins;Gate",
     },
     {
-      name: "蜡笔小新",
+      name: "Unity",
     },
     {
-      name: "英雄联盟手游",
+      name: "Arc Knight",
     },
     {
-      name: "天空中的歌",
+      name: "Persona 3",
     },
     {
-      name: "鲜花",
+      name: "Miku",
     },
     {
-      name: "枕刀歌",
+      name: "Disco Elysim",
     },
     {
-      name: "镖人",
+      name: "DANGANRONPA",
     },
     {
-      name: "不良人",
+      name: "Hollow Knight",
     },
     {
-      name: "不良人天罡传",
+      name: "Yu-Gi-Oh",
     },
     {
-      name: "鬼灭之刃",
+      name: "on the way to the South Pole",
     },
   ];
 
@@ -197,8 +196,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>首页 - wuxian&apos;s web</title>
-        <meta name="description" content="wuxian的个人网站首页" />
+        <title>首页 - zitong hu&apos;s web</title>
+        <meta name="description" content="Zitong Hu's homepage" />
       </Head>
       <div className="relative">
         {/* 弹窗组件 */}
@@ -263,7 +262,7 @@ export default function Home() {
                 <div className="text-[28px] md:text-[40px] font-bold text-[#fff] text-shadow-sm">
                   <span className="inline-block">
                     {displayText.split(" ").map((word, wordIndex) => {
-                      if (word === "wuxian") {
+                      if (word === "zitong hu") {
                         return (
                           <span
                             key={wordIndex}
@@ -289,19 +288,19 @@ export default function Home() {
                   <span className="bg-gradient-to-br from-[#1b2c55] to-[#3d85a9] bg-clip-text text-transparent text-[16px] md:text-[18px]">
                     Front-end
                   </span>{" "}
-                  development (前端开发工程师)
+                  development (Game Designer)
                 </div>
                 <div className="text-shadow-sm text-[#fff] text-[14px] md:text-[16px]">
                   <span className="bg-gradient-to-br from-[#1b2c55] to-[#3d85a9] bg-clip-text text-transparent text-[16px] md:text-[18px]">
-                    25
+                    21
                   </span>{" "}
-                  years old (25岁)
+                  years old (21 years old)
                 </div>
                 <div className="text-shadow-sm text-[#fff] text-[14px] md:text-[16px]">
                   <span className="bg-gradient-to-br from-[#1b2c55] to-[#3d85a9] bg-clip-text text-transparent text-[16px] md:text-[18px]">
-                    2.5
+                    1
                   </span>{" "}
-                  work experience (2.5年工作经验)
+                  work experience (1 year internship experience)
                 </div>
                 <div className="flex mt-[10px] gap-[10px] justify-center md:justify-start">
                   <div
@@ -339,7 +338,7 @@ export default function Home() {
                           height={20}
                           color="#fff"
                         />
-                        广州番禺区
+                        Shanghai
                       </div>
                       <div className="flex items-center gap-[5px]">
                         <SvgIcon
@@ -348,7 +347,7 @@ export default function Home() {
                           height={20}
                           color="#fff"
                         />
-                        在职
+                        at school
                       </div>
                     </div>
                     <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col flex-1">
@@ -359,7 +358,7 @@ export default function Home() {
                           height={20}
                           color="#fff"
                         />
-                        广西
+                        Shanghai
                       </div>
                       <div className="flex items-center gap-[5px]">
                         <SvgIcon
@@ -368,7 +367,7 @@ export default function Home() {
                           height={20}
                           color="#fff"
                         />
-                        家
+                        home
                       </div>
                     </div>
                   </div>
@@ -421,17 +420,14 @@ export default function Home() {
               </div>
               {/* 右侧/底部区域 */}
               <div className="flex flex-col gap-[10px] order-1 md:order-2 w-full md:w-auto">
-                {/* GitHub贡献热力图 */}
-                <div className="w-full overflow-x-auto">
-                  <GitHubHeatmap username="996wuxian" year={2025} />
-                </div>
+
 
                 <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col">
                   <div className="font-bold text-[16px] flex items-center gap-[5px]">
                     <SvgIcon name="site" width={20} height={20} color="#fff" />
                     <div className="flex flex-col">
                       Navigation
-                      <span className="text-[11px] font-[400]">导航</span>
+                      <span className="text-[11px] font-[400]">Navigation</span>
                     </div>
                   </div>
                   <div className="flex gap-[10px] flex-col sm:flex-row">
@@ -440,7 +436,7 @@ export default function Home() {
                       className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col cursor-pointer flex-1"
                     >
                       <div className="flex justify-between items-center">
-                        作品集
+                        portfolio
                         <SvgIcon
                           name="zuopin"
                           width={25}
@@ -465,24 +461,10 @@ export default function Home() {
                       </div>
                       <span className="text-[12px]">记录前端知识</span>
                     </Link>
-                    <Link
-                      href="/chat"
-                      className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col cursor-pointer flex-1"
-                    >
-                      <div className="flex justify-between items-center">
-                        聊天室
-                        <SvgIcon
-                          name="comment"
-                          width={25}
-                          height={25}
-                          color="#fff"
-                        />
-                      </div>
-                      <span className="text-[12px]">实时聊天交流</span>
-                    </Link>
+
                   </div>
                   <div className="text-[12px] md:text-[14px]">
-                    2025年开始持续更新中...
+                    Good morning 2026
                   </div>
                 </div>
               </div>
@@ -495,7 +477,7 @@ export default function Home() {
               href="/works"
               className="bg-[rgba(0,0,0,.5)] hover:bg-[rgba(0,0,0,.7)] rounded-[5px] p-[8px] cursor-pointer transition-all duration-200 flex items-center gap-2 text-white backdrop-blur-sm"
             >
-              <span className="text-sm">作品集</span>
+              <span className="text-sm">portfolio</span>
               <SvgIcon name="right" width={20} height={20} color="#fff" />
             </Link>
           </div>
