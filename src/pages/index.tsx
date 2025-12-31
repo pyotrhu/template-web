@@ -1,3 +1,6 @@
+// 文件位置: src/pages/index.tsx
+// (请替换整个文件内容，注意保留头部的 import)
+
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -15,6 +18,7 @@ import {
   VideoModalConfig,
 } from "@/data/tagConfigs";
 import { experienceData } from "@/data/experience";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,7 +31,7 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
   const { theme } = useTheme();
-  // 弹窗状态
+  // Modal states
   const [imageModal, setImageModal] = useState({
     isOpen: false,
     title: "",
@@ -53,40 +57,37 @@ export default function Home() {
     enableDanmaku: true,
   });
 
-  // 打字机动画状态
+  // Typewriter effect states
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const fullText = "Hello, I'm zitong hu";
+  // *** 修改点 1: 名字改成你的 ***
+  const fullText = "Hello, I'm Zitong Hu"; 
 
-  // 打字机动画效果
+  // Typewriter effect logic
   useEffect(() => {
-    const typeSpeed = 150; // 打字速度
-    const deleteSpeed = 100; // 删除速度
-    const pauseTime = 2000; // 完整显示后的暂停时间
-    const restartPause = 1000; // 删除完后重新开始的暂停时间
+    const typeSpeed = 150;
+    const deleteSpeed = 100;
+    const pauseTime = 2000;
+    const restartPause = 1000;
 
     const timer = setTimeout(
       () => {
         if (!isDeleting) {
-          // 逐字添加
           if (currentIndex < fullText.length) {
             setDisplayText(fullText.slice(0, currentIndex + 1));
             setCurrentIndex(currentIndex + 1);
           } else {
-            // 完整显示后暂停，然后开始删除
             setTimeout(() => {
               setIsDeleting(true);
             }, pauseTime);
           }
         } else {
-          // 逐字删除
           if (currentIndex > 0) {
             setDisplayText(fullText.slice(0, currentIndex - 1));
             setCurrentIndex(currentIndex - 1);
           } else {
-            // 删除完后暂停，然后重新开始
             setTimeout(() => {
               setIsDeleting(false);
             }, restartPause);
@@ -99,13 +100,9 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [currentIndex, isDeleting, fullText]);
 
-  // 标签点击处理函数
   const handleTagClick = (tagName: string) => {
     const tagConfig = tagConfigs[tagName];
-
-    if (!tagConfig) {
-      return;
-    }
+    if (!tagConfig) return;
 
     switch (tagConfig.type) {
       case "image":
@@ -126,15 +123,14 @@ export default function Home() {
     }
   };
 
-  // 添加GitHub和QQ点击处理函数
   const handleGithubClick = () => {
-    window.open("https://github.com/pyotrhu", "_blank");
+    window.open("https://github.com/pyotrhu", "_blank"); // 记得换成你的 GitHub
   };
 
   const handleQQClick = () => {
     setImageModal({
       isOpen: true,
-      title: "QQ",
+      title: "Contact", // 英文标题
       images: ["/images/qq.jpg"],
       danmakuText: "Contact",
       enableDanmaku: true,
@@ -143,52 +139,23 @@ export default function Home() {
     });
   };
 
+  // Tags (ensure these are what you want)
   const tags = [
-    {
-      name: "Game Design",
-    },
-    {
-      name: "Video produce",
-    },
-    {
-      name: "Anime",
-    },
-    {
-      name: "PostModern",
-    },
-    {
-      name: "Write",
-    },
-    {
-      name: "Steins;Gate",
-    },
-    {
-      name: "Unity",
-    },
-    {
-      name: "Arc Knight",
-    },
-    {
-      name: "Persona 3",
-    },
-    {
-      name: "Miku",
-    },
-    {
-      name: "Disco Elysim",
-    },
-    {
-      name: "DANGANRONPA",
-    },
-    {
-      name: "Hollow Knight",
-    },
-    {
-      name: "Yu-Gi-Oh",
-    },
-    {
-      name: "on the way to the South Pole",
-    },
+    { name: "Game Design" },
+    { name: "Video Production" },
+    { name: "Anime" },
+    { name: "Post-Modern" },
+    { name: "Writing" },
+    { name: "Steins;Gate" },
+    { name: "Unity" },
+    { name: "Arknights" },
+    { name: "Persona 3" },
+    { name: "Hatsune Miku" },
+    { name: "Disco Elysium" },
+    { name: "Danganronpa" },
+    { name: "Hollow Knight" },
+    { name: "Yu-Gi-Oh" },
+    { name: "On my way to the South Pole" },
   ];
 
   const express = experienceData;
@@ -196,11 +163,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>首页 - zitong hu&apos;s web</title>
-        <meta name="description" content="Zitong Hu's homepage" />
+        <title>Home - Zixiang Zhou&apos;s Web</title>
+        <meta name="description" content="Zixiang Zhou's homepage" />
       </Head>
       <div className="relative">
-        {/* 弹窗组件 */}
         <ImageModal
           isOpen={imageModal.isOpen}
           onClose={() => setImageModal({ ...imageModal, isOpen: false })}
@@ -231,153 +197,94 @@ export default function Home() {
           enableDanmaku={videoModal.enableDanmaku}
         />
 
-        {/* 主要内容区域 */}
-        <div
-          className={`${geistSans.className} ${geistMono.className} items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)] flex justify-center px-4 md:px-0 `}
-        >
+        <div className={`${geistSans.className} ${geistMono.className} items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)] flex justify-center px-4 md:px-0 `}>
           <div className="flex flex-col w-full max-w-3xl h-[100vh] md:h-auto overflow-y-auto md:overflow-y-visible custom-scrollbar pb-20 md:pb-0 hide-scrollbar">
-            {/* 头部区域 - 头像和基本信息 */}
             <div className="flex gap-[10px] flex-col md:flex-row pt-[100px] md:pt-0">
               <div className="relative w-full md:w-[250px] flex justify-center items-center mx-auto md:mx-0">
                 <Image
                   src="/images/avatar.jpg"
-                  alt="Logo"
+                  alt="Avatar"
                   width={200}
                   height={200}
                   className="rounded-[50%] shadow-lg w-[150px] h-[150px] md:w-[200px] md:h-[200px]"
                 />
-                {theme !== "dark" ? (
+                {theme !== "dark" && (
                   <Image
                     src="/images/smoke.png"
-                    alt="Logo"
+                    alt="Effect"
                     width={200}
                     height={200}
                     className="top-[-135px] md:top-[-180px] left-[50%] translate-x-[-50%] absolute w-[150px] h-[150px] md:w-[200px] md:h-[200px]"
                   />
-                ) : (
-                  ""
                 )}
               </div>
               <div className="flex flex-col gap-[10px] text-center md:text-left px-4 md:px-0">
                 <div className="text-[28px] md:text-[40px] font-bold text-[#fff] text-shadow-sm">
                   <span className="inline-block">
-                    {displayText.split(" ").map((word, wordIndex) => {
-                      if (word === "zitong hu") {
-                        return (
-                          <span
-                            key={wordIndex}
-                            className="bg-gradient-to-br from-[#1b2c55] to-[#3d85a9] bg-clip-text text-transparent"
-                          >
-                            {word}
-                          </span>
-                        );
-                      }
-                      return (
-                        <span key={wordIndex}>
-                          {word}
-                          {wordIndex < displayText.split(" ").length - 1
-                            ? " "
-                            : ""}
-                        </span>
-                      );
-                    })}
+                    {displayText}
                     <span className="animate-pulse text-[#3d85a9]">|</span>
                   </span>
                 </div>
+                {/* *** 修改点 2: 英文职业 *** */}
                 <div className="text-shadow-sm text-[#fff] text-[14px] md:text-[16px]">
                   <span className="bg-gradient-to-br from-[#1b2c55] to-[#3d85a9] bg-clip-text text-transparent text-[16px] md:text-[18px]">
-                    Front-end
+                    Student
                   </span>{" "}
-                  development (Game Designer)
+                   (Computer Science & Mathematics)
                 </div>
+                {/* *** 修改点 3: 英文年龄 *** */}
                 <div className="text-shadow-sm text-[#fff] text-[14px] md:text-[16px]">
                   <span className="bg-gradient-to-br from-[#1b2c55] to-[#3d85a9] bg-clip-text text-transparent text-[16px] md:text-[18px]">
-                    21
+                    20
                   </span>{" "}
-                  years old (21 years old)
+                  years old
                 </div>
+                {/* *** 修改点 4: 英文经验 *** */}
                 <div className="text-shadow-sm text-[#fff] text-[14px] md:text-[16px]">
                   <span className="bg-gradient-to-br from-[#1b2c55] to-[#3d85a9] bg-clip-text text-transparent text-[16px] md:text-[18px]">
                     1
                   </span>{" "}
-                  work experience (1 year internship experience)
+                  year research experience
                 </div>
                 <div className="flex mt-[10px] gap-[10px] justify-center md:justify-start">
-                  <div
-                    className="bg-[rgba(0,0,0,.5)] rounded-[5px] p-[8px] cursor-pointer"
-                    onClick={handleGithubClick}
-                  >
-                    <SvgIcon
-                      name="github"
-                      width={20}
-                      height={20}
-                      color="#fff"
-                    />
+                  <div className="bg-[rgba(0,0,0,.5)] rounded-[5px] p-[8px] cursor-pointer" onClick={handleGithubClick}>
+                    <SvgIcon name="github" width={20} height={20} color="#fff" />
                   </div>
-                  <div
-                    className="bg-[rgba(0,0,0,.5)] rounded-[5px] p-[8px] cursor-pointer"
-                    onClick={handleQQClick}
-                  >
+                  <div className="bg-[rgba(0,0,0,.5)] rounded-[5px] p-[8px] cursor-pointer" onClick={handleQQClick}>
                     <SvgIcon name="qq" width={20} height={20} color="#fff" />
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* 内容区域 - 在800px以下变为垂直布局 */}
             <div className="flex gap-[10px] mt-[20px] flex-col md:flex-row px-4 md:px-0">
-              {/* 左侧/中间区域 */}
               <div className="flex order-2 md:order-1 w-full md:w-auto">
                 <div className="flex flex-col gap-[10px] w-full md:w-[250px]">
                   <div className="flex gap-[10px] flex-col flex-row">
                     <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col flex-1">
                       <div className="flex items-center gap-[5px]">
-                        <SvgIcon
-                          name="address"
-                          width={20}
-                          height={20}
-                          color="#fff"
-                        />
+                        <SvgIcon name="address" width={20} height={20} color="#fff" />
                         Shanghai
                       </div>
                       <div className="flex items-center gap-[5px]">
-                        <SvgIcon
-                          name="work"
-                          width={20}
-                          height={20}
-                          color="#fff"
-                        />
-                        at school
+                        <SvgIcon name="work" width={20} height={20} color="#fff" />
+                        SJTU
                       </div>
                     </div>
                     <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col flex-1">
                       <div className="flex items-center gap-[5px]">
-                        <SvgIcon
-                          name="address"
-                          width={20}
-                          height={20}
-                          color="#fff"
-                        />
+                        <SvgIcon name="address" width={20} height={20} color="#fff" />
                         Shanghai
                       </div>
                       <div className="flex items-center gap-[5px]">
-                        <SvgIcon
-                          name="home"
-                          width={20}
-                          height={20}
-                          color="#fff"
-                        />
-                        home
+                        <SvgIcon name="home" width={20} height={20} color="#fff" />
+                        Home
                       </div>
                     </div>
                   </div>
                   <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] gap-[10px] flex flex-wrap text-[12px]">
                     {tags.map((tag) => (
-                      <div
-                        className="bg-[rgba(255,255,255,.1)] rounded-[5px] p-[5px] w-fit cursor-pointer hover:bg-[rgba(255,255,255,.2)] transition-all duration-200 transform hover:scale-105"
-                        key={tag.name}
-                        onClick={() => handleTagClick(tag.name)}
-                      >
+                      <div className="bg-[rgba(255,255,255,.1)] rounded-[5px] p-[5px] w-fit cursor-pointer hover:bg-[rgba(255,255,255,.2)] transition-all duration-200 transform hover:scale-105" key={tag.name} onClick={() => handleTagClick(tag.name)}>
                         {tag.name}
                       </div>
                     ))}
@@ -385,32 +292,16 @@ export default function Home() {
                   <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col">
                     <div className="relative">
                       {express.map((item, index) => (
-                        <div
-                          key={index}
-                          className="relative flex items-start last:mb-0"
-                        >
-                          {/* 时间线左侧圆点 */}
+                        <div key={index} className="relative flex items-start last:mb-0">
                           <div className="relative flex flex-col items-center mr-[15px]">
-                            <div
-                              className={`w-[12px] h-[12px] rounded-full border-2 border-white ${
-                                index === express.length - 1
-                                  ? "bg-[#3d85a9]"
-                                  : "bg-[#1b2c55]"
-                              }`}
-                            ></div>
-                            {/* 连接线 */}
+                            <div className={`w-[12px] h-[12px] rounded-full border-2 border-white ${index === express.length - 1 ? "bg-[#3d85a9]" : "bg-[#1b2c55]"}`}></div>
                             {index < express.length - 1 && (
                               <div className="w-[2px] h-[40px] bg-gradient-to-b from-[#1b2c55] to-[#3d85a9] mt-[5px]"></div>
                             )}
                           </div>
-
                           <div className="flex-1">
-                            <div className="font-semibold text-[#fff] mb-[2px] text-[13px] md:text-[14px]">
-                              {item.name}
-                            </div>
-                            <div className="text-[11px] md:text-[12px] text-[rgba(255,255,255,0.7)]">
-                              {item.date}
-                            </div>
+                            <div className="font-semibold text-[#fff] mb-[2px] text-[13px] md:text-[14px]">{item.name}</div>
+                            <div className="text-[11px] md:text-[12px] text-[rgba(255,255,255,0.7)]">{item.date}</div>
                           </div>
                         </div>
                       ))}
@@ -418,50 +309,31 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              {/* 右侧/底部区域 */}
+              
               <div className="flex flex-col gap-[10px] order-1 md:order-2 w-full md:w-auto">
-
-
                 <div className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col">
                   <div className="font-bold text-[16px] flex items-center gap-[5px]">
                     <SvgIcon name="site" width={20} height={20} color="#fff" />
                     <div className="flex flex-col">
                       Navigation
-                      <span className="text-[11px] font-[400]">Navigation</span>
+                      <span className="text-[11px] font-[400]">Links</span>
                     </div>
                   </div>
                   <div className="flex gap-[10px] flex-col sm:flex-row">
-                    <Link
-                      href="/works"
-                      className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col cursor-pointer flex-1"
-                    >
+                    <Link href="/works" className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col cursor-pointer flex-1">
                       <div className="flex justify-between items-center">
-                        portfolio
-                        <SvgIcon
-                          name="zuopin"
-                          width={25}
-                          height={25}
-                          color="#fff"
-                        />
+                        Portfolio
+                        <SvgIcon name="zuopin" width={25} height={25} color="#fff" />
                       </div>
-                      <span className="text-[12px]">记录前端作品</span>
+                      <span className="text-[12px]">My Projects</span>
                     </Link>
-                    <Link
-                      href="/blog"
-                      className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col cursor-pointer flex-1"
-                    >
+                    <Link href="/blog" className="bg-[rgba(0,0,0,.3)] rounded-[5px] p-[10px] text-[#fff] text-[14px] gap-[10px] flex flex-col cursor-pointer flex-1">
                       <div className="flex justify-between items-center">
-                        文章
-                        <SvgIcon
-                          name="docs"
-                          width={25}
-                          height={25}
-                          color="#fff"
-                        />
+                        Blog
+                        <SvgIcon name="docs" width={25} height={25} color="#fff" />
                       </div>
-                      <span className="text-[12px]">记录前端知识</span>
+                      <span className="text-[12px]">My Thoughts</span>
                     </Link>
-
                   </div>
                   <div className="text-[12px] md:text-[14px]">
                     Good morning 2026
@@ -471,13 +343,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 滚动到作品页按钮 */}
           <div className="fixed bottom-8 right-8 z-10">
-            <Link
-              href="/works"
-              className="bg-[rgba(0,0,0,.5)] hover:bg-[rgba(0,0,0,.7)] rounded-[5px] p-[8px] cursor-pointer transition-all duration-200 flex items-center gap-2 text-white backdrop-blur-sm"
-            >
-              <span className="text-sm">portfolio</span>
+            <Link href="/works" className="bg-[rgba(0,0,0,.5)] hover:bg-[rgba(0,0,0,.7)] rounded-[5px] p-[8px] cursor-pointer transition-all duration-200 flex items-center gap-2 text-white backdrop-blur-sm">
+              <span className="text-sm">Portfolio</span>
               <SvgIcon name="right" width={20} height={20} color="#fff" />
             </Link>
           </div>
